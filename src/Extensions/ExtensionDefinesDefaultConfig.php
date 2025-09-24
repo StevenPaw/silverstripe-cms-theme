@@ -2,6 +2,7 @@
 
 namespace RyanPotter\SilverstripeCMSTheme\Extensions;
 
+use SilverStripe\Core\Extension;
 use SilverStripe\Core\Config\Config;
 
 /**
@@ -14,7 +15,7 @@ use SilverStripe\Core\Config\Config;
  * Each string should be the name of a config setting (i.e. the name of a private static variable).
  *
  * @package RyanPotter\SilverstripeCMSTheme\Extensions
- * @mixin \SilverStripe\Core\Extension
+ * @mixin Extension
  */
 trait ExtensionDefinesDefaultConfig
 {

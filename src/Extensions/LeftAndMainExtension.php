@@ -10,27 +10,25 @@ use SilverStripe\View\Requirements;
 /**
  * Class LeftAndMainExtension
  * @package RyanPotter\SilverStripeCMSTheme\Extensions
- * @property \SilverStripe\Admin\LeftAndMain $owner
+ * @property LeftAndMain $owner
  */
 class LeftAndMainExtension extends Extension
 {
-  public function init()
+  public function onInit()
   {
     $config = LeftAndMain::config();
-    $cms_background = !$config->cms_background ? '#1d48a0' : $config->cms_background;
-    $cms_border_color = !$config->cms_border_color ? '#173778' : $config->cms_border_color;
-    $cms_color = !$config->cms_color ? '#fff' : $config->cms_color;
-    $cms_hover_background = !$config->cms_hover_background ? 'inherit' : $config->cms_hover_background;
-    $cms_hover_color = !$config->cms_hover_color ? 'currentColor' : $config->cms_hover_color;
-    $cms_active_background = !$config->cms_active_background ? '#173778' : $config->cms_active_background;
-    $cms_active_color = !$config->cms_active_color ? 'currentColor' : $config->cms_active_color;
-    $cms_drawer_background = !$config->cms_drawer_background ? '#1a3e88' : $config->cms_drawer_background;
-    $cms_drawer_color = !$config->cms_drawer_color ? 'currentColor' : $config->cms_drawer_color;
-    $cms_icon_color = !$config->cms_icon_color ? 'currentColor' : $config->cms_icon_color;
-
+    $cms_background = $config->cms_background ?: '#1d48a0';
+    $cms_border_color = $config->cms_border_color ?: '#173778';
+    $cms_color = $config->cms_color ?: '#fff';
+    $cms_hover_background = $config->cms_hover_background ?: 'inherit';
+    $cms_hover_color = $config->cms_hover_color ?: 'currentColor';
+    $cms_active_background = $config->cms_active_background ?: '#173778';
+    $cms_active_color = $config->cms_active_color ?: 'currentColor';
+    $cms_drawer_background = $config->cms_drawer_background ?: '#1a3e88';
+    $cms_drawer_color = $config->cms_drawer_color ?: 'currentColor';
+    $cms_icon_color = $config->cms_icon_color ?: 'currentColor';
     Requirements::insertHeadTags('<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">','cms-theme-font-awesome');
     Requirements::css('ryanpotter/silverstripe-cms-theme:dist/main.css');
-
     Requirements::customCSS(
       '.cms-mobile-menu-toggle {background: ' . $cms_background . ' !important; color: ' . $cms_color . ' !important;}' .
       '.cms-mobile-menu-toggle.cms-mobile-menu-toggle--open {background: ' . $cms_active_background . ' !important; color: ' . $cms_active_color . ' !important;}'
@@ -91,7 +89,7 @@ class LeftAndMainExtension extends Extension
    */
   public function BrandedMenuClass($controller = null)
   {
-    $class = 'icon-' . strtolower($controller);
+    $class = 'icon-' . strtolower((string) $controller);
     if ($alternative = Config::inst()->get($controller, 'menu_icon_class')) {
       $class = $alternative;
     }

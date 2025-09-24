@@ -14,7 +14,7 @@ use SilverStripe\ORM\FieldType\DBField;
  * Class GroupedCmsMenu
  *
  * @package RyanPotter\SilverstripeCMSTheme\Extensions
- * @property \SilverStripe\Admin\LeftAndMain $owner
+ * @property LeftAndMain $owner
  */
 class GroupedCmsMenu extends Extension
 {
@@ -55,17 +55,18 @@ class GroupedCmsMenu extends Extension
         // Add all menu items to their group arrays.
         foreach ($menus as $title => $settings) {
             $children = array_key_exists('items', $settings) ? $settings['items'] : [];
-            $priority = array_key_exists('priority', $settings) ? $settings['priority'] : null;
+            $priority = $settings['priority'] ?? null;
 
             // If there are any menu items in the group
-            if (count($items)) {
+            if (count($items) > 0) {
                 foreach ($children as $key => $item) {
-                    if (is_numeric($key))
+                    if (is_numeric($key)) {
                         $itemsToGroup[$item] = [
                             'Group'     => $title,
-                            'Priority'  => $priority ? $priority : $menuSort,
+                            'Priority'  => $priority ?: $menuSort,
                             'SortOrder' => $itemSort,
                         ];
+                    }
                     $itemSort++;
                 }
                 $menuSort--;
@@ -98,7 +99,9 @@ class GroupedCmsMenu extends Extension
                 // If any of the groups children are the current page, add the active flag.
                 $active = false;
                 foreach ($children as $child) {
-                    if ($child->LinkingMode == 'current') $active = true;
+                    if ($child->LinkingMode == 'current') {
+                        $active = true;
+                    }
                 }
 
                 // Check if the menu group has an associated icon class.

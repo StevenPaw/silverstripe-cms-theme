@@ -2,8 +2,8 @@
 
 namespace RyanPotter\SilverStripeCMSTheme\Extensions;
 
+use SilverStripe\Forms\FormField;
 use SilverStripe\Assets\Image;
-use SilverStripe\Control\Director;
 use SilverStripe\Core\Extension;
 use SilverStripe\Core\Injector\Injector;
 use SilverStripe\Core\Manifest\ModuleResourceLoader;
@@ -11,14 +11,13 @@ use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\FileHandleField;
 use SilverStripe\Forms\HeaderField;
 use SilverStripe\Forms\TabSet;
-use SilverStripe\ORM\DataExtension;
 use SilverStripe\Security\Permission;
 use SilverStripe\SiteConfig\SiteConfig;
 
 /**
  * Class SiteConfigExtension
  * @package RyanPotter\SilverStripeCMSTheme\Extensions
- * @property \SilverStripe\SiteConfig\SiteConfig $owner
+ * @property SiteConfig $owner
  */
 class SiteConfigExtension extends Extension
 {
@@ -36,12 +35,12 @@ class SiteConfigExtension extends Extension
     public function updateCMSFields(FieldList $fields)
     {
         if (Permission::check('ADMIN') && !SiteConfig::config()->get('cms_logo')) {
-            if (!$fields->fieldByName('Root.Settings')) {
+            if (!$fields->fieldByName('Root.Settings') instanceof FormField) {
                 $fields->addFieldToTab(
                     'Root',
                     TabSet::create(
                         'CMSBrandingTab',
-                        _t(__CLASS__ . '.CMSBRANDINGTAB', 'CMS Branding')
+                        _t(self::class . '.CMSBRANDINGTAB', 'CMS Branding')
                     )
                 );
             }
@@ -50,15 +49,15 @@ class SiteConfigExtension extends Extension
             $fields->addFieldsToTab(
                 'Root.CMSBrandingTab.CMS',
                 [
-                    HeaderField::create('', _t(__CLASS__ . '.IMAGES', 'Images')),
+                    HeaderField::create('', _t(self::class . '.IMAGES', 'Images')),
                     Injector::inst()->create(
                         FileHandleField::class,
                         'CMSLogo',
-                        _t(__CLASS__ . '.LOGOLABEL', 'Logo')
+                        _t(self::class . '.LOGOLABEL', 'Logo')
                     )
                         ->setAllowedFileCategories('image/supported')
                         ->setFolderName('Uploads/cms-branding')
-                        ->setRightTitle(_t(__CLASS__ . '.LOGODESCRIPTIOM', 'Logo displayed in the top left-hand side of the CMS menu.')),
+                        ->setRightTitle(_t(self::class . '.LOGODESCRIPTIOM', 'Logo displayed in the top left-hand side of the CMS menu.')),
                 ]
             );
         }
@@ -98,6 +97,7 @@ class SiteConfigExtension extends Extension
         if ($owner->CMSLogoID && $owner->CMSLogo()->exists()) {
             return $owner->CMSLogo()->ScaleMaxWidth($imageWidth);
         }
+        return null;
     }
 
     /**
