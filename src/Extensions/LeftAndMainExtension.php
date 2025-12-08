@@ -29,6 +29,7 @@ class LeftAndMainExtension extends Extension
     $cms_icon_color = $config->cms_icon_color ?: 'currentColor';
     Requirements::insertHeadTags('<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">','cms-theme-font-awesome');
     Requirements::css('ryanpotter/silverstripe-cms-theme:dist/main.css');
+    Requirements::javascript('ryanpotter/silverstripe-cms-theme:dist/bundle.js');
     Requirements::customCSS(
       '.cms-mobile-menu-toggle {background: ' . $cms_background . ' !important; color: ' . $cms_color . ' !important;}' .
       '.cms-mobile-menu-toggle.cms-mobile-menu-toggle--open {background: ' . $cms_active_background . ' !important; color: ' . $cms_active_color . ' !important;}'
