@@ -41,6 +41,10 @@ class LeftAndMainExtension extends Extension
       '.cms-menu__header span, .cms-login-status .cms-login-status__profile-link, .cms-login-status .cms-login-status__logout-link, .cms-sitename .cms-sitename__title {color: ' . $cms_color . ' !important;}' .
       '.cms-sitename {border-color: ' . $cms_border_color . ' !important;}' .
       '.cms-sitename:hover, .cms-sitename:focus {background-color: ' . $cms_hover_background . ' !important;color: ' . $cms_hover_color . ' !important;}' .
+      '.cms-help__toggle {background-color: ' . $cms_background . ' !important;color: ' . $cms_color . ' !important; border-color: ' . $cms_border_color . ' !important;}' .
+      '.cms-help__toggle-title {color: ' . $cms_color . ' !important;}' .
+      '.cms-help__link {background-color: ' . $cms_background . ' !important;color: ' . $cms_color . ' !important; border-color: ' . $cms_border_color . ' !important;}' .
+      '.cms-help__caret {color: ' . $cms_color . ' !important;}' .
       '.cms-login-status .cms-login-status__profile-link:focus, .cms-login-status .cms-login-status__profile-link:hover, .cms-login-status .cms-login-status__profile-link:focus span, .cms-login-status .cms-login-status__profile-link:hover span {background-color: ' . $cms_hover_background . ' !important;color: ' . $cms_hover_color . ' !important;}' .
       '.cms-login-status .cms-login-status__logout-link:focus, .cms-login-status .cms-login-status__logout-link:hover {background-color: ' . $cms_hover_background . ' !important;color: ' . $cms_hover_color . ' !important;}'
     );
