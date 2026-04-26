@@ -115,4 +115,13 @@ class LeftAndMainExtension extends Extension
 
     return $mainMenu;
   }
+
+  /**
+   * Check if CMS info panel should be shown
+   * @return bool
+   */
+  public function ShowCMSInfo()
+  {
+    return (bool) Config::inst()->get(LeftAndMain::class, 'show_cms_info');
+  }
 }

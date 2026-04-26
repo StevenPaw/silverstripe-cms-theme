@@ -22,4 +22,27 @@ $cms-menu-width: 18.4rem;
   .cms-panel-toggle .sticky-toggle {
     display: none !important;
   }
+
+  .cms-menu__list .branded-menu__list-item.opened > a {
+    padding-left: 2rem;
+  }
+
+  .cms-menu__list .branded-menu__list-item.opened .branded-menu--child a {
+    padding-left: 2.5rem;
+  }
+
+  // Remove the default left border on opened/current menu items.
+  .cms-menu__list .opened {
+    border-left: none;
+  }
+
+  .cms-login-status .cms-login-status__profile-link .cms-login-status__profile-icon {
+    left: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .cms-login-status {
+    min-height: 40px;
+  }
 }

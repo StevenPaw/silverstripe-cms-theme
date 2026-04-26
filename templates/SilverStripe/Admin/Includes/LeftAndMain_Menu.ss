@@ -10,9 +10,12 @@
 		<% include SilverStripe\\Admin\\LeftAndMain_MenuList %>
 	</div>
 
-	<div class="toolbar toolbar--south cms-panel-toggle">
-		<% include SilverStripe\\Admin\\LeftAndMain_MenuToggle %>
-	</div>
+  <!-- Activate show_cms_info: true in LeftAndMain config to display CMS info button -->
+	<% if $ShowCMSInfo %>
+    <div class="toolbar toolbar--south cms-panel-toggle">
+      <% include SilverStripe\\Admin\\LeftAndMain_MenuToggle %>
+    </div>
+	<% end_if %>
 </div>
 
 <button class="fill-height fill-width cms-menu-mobile-overlay" aria-controls="cms-menu" aria-expanded="false"></button>

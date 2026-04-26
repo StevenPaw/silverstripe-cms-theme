@@ -5,6 +5,8 @@ SilverStripe\Admin\LeftAndMain:
   extensions:
     - RyanPotter\SilverStripeCMSTheme\Extensions\LeftAndMainExtension
     - RyanPotter\SilverStripeCMSTheme\Extensions\GroupedCmsMenu
+  # Set to true to show CMS info panel (toggle button, sticky status, etc.)
+  show_cms_info: false
 
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
